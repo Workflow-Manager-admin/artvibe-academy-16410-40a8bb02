@@ -1,10 +1,22 @@
 import React from "react";
+import featureFlags from "./featureFlags";
 
 // PUBLIC_INTERFACE
 /**
  * Gallery component for showcasing community artworks.
+ * Displays placeholder grid if enabled.
  */
 function Gallery() {
+  if (!featureFlags.galleryEnabled) {
+    return (
+      <section>
+        <div style={{ textAlign: "center", margin: "40px 0", color: "var(--text-secondary)" }}>
+          Community Gallery is currently unavailable.
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section>
       <div className="grid">
