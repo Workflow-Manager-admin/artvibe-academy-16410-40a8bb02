@@ -1,10 +1,22 @@
 import React from "react";
+import featureFlags from "./featureFlags";
 
 // PUBLIC_INTERFACE
 /**
  * Challenges component for art challenges and participation.
+ * Shows placeholder grid content if feature is enabled.
  */
 function Challenges() {
+  if (!featureFlags.challengesEnabled) {
+    return (
+      <section>
+        <div style={{ textAlign: "center", margin: "40px 0", color: "var(--text-secondary)" }}>
+          Challenges are currently unavailable.
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section>
       <div className="grid">
