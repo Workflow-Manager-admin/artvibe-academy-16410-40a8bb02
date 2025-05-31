@@ -1,10 +1,22 @@
 import React from "react";
+import featureFlags from "./featureFlags";
 
 // PUBLIC_INTERFACE
 /**
  * Tutorials component for displaying art tutorials.
+ * Shows placeholder grid content if feature is enabled.
  */
 function Tutorials() {
+  if (!featureFlags.tutorialsEnabled) {
+    return (
+      <section>
+        <div style={{ textAlign: "center", margin: "40px 0", color: "var(--text-secondary)" }}>
+          Tutorials are currently unavailable.
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section>
       <div className="grid">
